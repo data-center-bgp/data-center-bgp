@@ -59,4 +59,9 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(CycleTimeCOA::class);
     }
+
+    public function cargoTcCoa(): HasMany
+    {
+        return $this->hasMany(CargoTcCoa::class);
+    }
 }
