@@ -9,6 +9,9 @@ Project ini dibuat dengan:
 -   PHP
 -   Laravel
 -   Filament
+-   TailwindCSS
+-   Livewire
+-   AlpineJS
 -   Filament Shield
 -   PostgreSQL
 
