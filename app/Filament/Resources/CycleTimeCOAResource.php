@@ -26,6 +26,12 @@ class CycleTimeCOAResource extends Resource
                 Forms\Components\DatePicker::make('waktu')
                     ->label('Waktu Keberangkatan')
                     ->required(),
+                Forms\Components\TextInput::make('tahun')
+                    ->required()
+                    ->label('Tahun Keberangkatan'),
+                Forms\Components\TextInput::make('bulan')
+                    ->required()
+                    ->label('Bulan Keberangkatan'),
                 Forms\Components\TextInput::make('trip')
                     ->required()
                     ->maxLength(200),
@@ -56,6 +62,12 @@ class CycleTimeCOAResource extends Resource
                 Forms\Components\TextInput::make('actual_fuel')
                     ->label('Actual Fuel')
                     ->maxLength(200),
+                Forms\Components\Select::make('fuel_status')
+                    ->nullable()
+                    ->options([
+                        'Normal' => 'Normal',
+                        'Over' => 'Over',
+                    ]),
                 Forms\Components\DateTimePicker::make('mulai_dari_jetty_loading')
                     ->label('Mulai dari Jetty Loading')
                     ->nullable(),
@@ -195,6 +207,10 @@ class CycleTimeCOAResource extends Resource
                 Tables\Columns\TextColumn::make('waktu')
                     ->dateTime()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('tahun')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('bulan')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('trip'),
                 Tables\Columns\TextColumn::make('fleet')
                     ->searchable(),
@@ -210,6 +226,14 @@ class CycleTimeCOAResource extends Resource
                     ->label('Estimasi Fuel'),
                 Tables\Columns\TextColumn::make('actual_fuel')
                     ->label('Actual Fuel'),
+                Tables\Columns\TextColumn::make('fuel_status')
+                    ->searchable()
+                    ->label('Fuel Status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'Normal' => 'success',
+                        'Over' => 'danger',
+                    }),
                 Tables\Columns\TextColumn::make('mulai_dari_jetty_loading')
                     ->dateTime()
                     ->label('Mulai dari Jetty Loading'),
