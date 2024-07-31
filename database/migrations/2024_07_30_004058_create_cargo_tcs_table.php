@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_cargo_tc', function (Blueprint $table) {
+        Schema::create('cargo_tcs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->bigInteger('user_id')->unsigned();
@@ -60,6 +60,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_cargo_tc');
+        Schema::dropIfExists('cargo_tcs');
     }
 };

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_spot_charter', function (Blueprint $table) {
+        Schema::create('cargo_spot_charters', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->bigInteger('user_id')->unsigned();
@@ -60,6 +60,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_spot_charter');
+        Schema::dropIfExists('cargo_spot_charters');
     }
 };

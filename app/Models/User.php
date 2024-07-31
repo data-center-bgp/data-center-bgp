@@ -65,4 +65,14 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(CargoTcCoa::class);
     }
+
+    public function cargoTc(): HasMany
+    {
+        return $this->hasMany(CargoTc::class);
+    }
+
+    public function cargoSpotCharter(): HasMany
+    {
+        return $this->hasMany(CargoSpotCharter::class);
+    }
 }
