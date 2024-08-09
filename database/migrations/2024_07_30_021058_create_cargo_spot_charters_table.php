@@ -54,6 +54,7 @@ return new class extends Migration
             $table->bigInteger('losses');
         });
     }
+    
 
     /**
      * Reverse the migrations.
