@@ -266,6 +266,16 @@ class CargoTcResource extends Resource
         ];
     }
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Cargo TC';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Cargo TC';
+    }
+
     public static function getPages(): array
     {
         return [

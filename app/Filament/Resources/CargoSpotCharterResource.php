@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CargoSpotCharterResource\Pages;
-use App\Filament\Resources\CargoSpotCharterResource\RelationManagers;
 use App\Models\CargoSpotCharter;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CargoSpotCharterResource extends Resource
 {
@@ -267,6 +264,16 @@ class CargoSpotCharterResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Cargo Spot Charter';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Cargo Spot Charter';
     }
 
     public static function getPages(): array

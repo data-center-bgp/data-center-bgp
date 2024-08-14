@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CargoTcCoaResource\Pages;
-use App\Filament\Resources\CargoTcCoaResource\RelationManagers;
 use App\Models\CargoTcCoa;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CargoTcCoaResource extends Resource
 {
@@ -267,6 +264,16 @@ class CargoTcCoaResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Cargo COA';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Cargo COA';
     }
 
     public static function getPages(): array

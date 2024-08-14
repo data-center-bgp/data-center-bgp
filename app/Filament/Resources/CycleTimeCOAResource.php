@@ -29,32 +29,94 @@ class CycleTimeCOAResource extends Resource
                 Forms\Components\TextInput::make('tahun')
                     ->required()
                     ->label('Tahun Keberangkatan'),
-                Forms\Components\TextInput::make('bulan')
+                Forms\Components\Select::make('bulan')
+                    ->options([
+                        'Januari' => 'Januari',
+                        'Februari' => 'Februari',
+                        'Maret' => 'Maret',
+                        'April' => 'April',
+                        'Mei' => 'Mei',
+                        'Juni' => 'Juni',
+                        'Juli' => 'Juli',
+                        'Agustus' => 'Agustus',
+                        'September' => 'September',
+                        'Oktober' => 'Oktober',
+                        'November' => 'November',
+                        'Desember' => 'Desember',
+                    ])
                     ->required()
                     ->label('Bulan Keberangkatan'),
                 Forms\Components\TextInput::make('trip')
                     ->required()
                     ->maxLength(200),
-                Forms\Components\TextInput::make('fleet')
-                    ->required()
-                    ->maxLength(200),
+                Forms\Components\Select::make('fleet')
+                    ->options([
+                        'I' => 'I',
+                        'II' => 'II',
+                        'III' => 'III',
+                        'IV' => 'IV',
+                    ])
+                    ->required(),
                 Forms\Components\Select::make('tugboat_spob')
                     ->options([
-                        'tugboat' => 'Tugboat',
-                        'spob' => 'SPOB',
+                        'TB-Merpati Nusantara' => 'TB-Merpati Nusantara',
+                        'TB-BB 9' => 'TB-BB 9',
+                        'TB-Galaxy Gemilang 9' => 'TB-Galaxy Gemilang 9',
+                        'TB-Lembu Buana II' => 'TB-Lembu Buana II',
+                        'TB-Jalesveva' => 'TB-Jalesveva',
+                        'TB-Losari' => 'TB-Losari',
+                        'TB-Pipit Nusantara' => 'TB-Pipit Nusantara',
+                        'TB-Cenderawasih Nusantara' => 'TB-Cenderawasih Nusantara',
+                        'TB-Pradipta 05' => 'TB-Pradipta 05',
+                        'AHT-Shine' => 'AHT-Shine',
+                        'UB-Ken Arok 9' => 'UB-Ken Arok 9',
+                        'TB-Armada Samudra 9' => 'TB-Armada Samudra 9',
+                        'UV-Setia Satria' => 'UV-Setia Satria',
+                        'TB-Wira Pratama' => 'TB-Wira Pratama',
+                        'TB-Elang Nusantara' => 'TB-Elang Nusantara',
+                        'TB-Yuddy 01' => 'TB-Yuddy 01',
+                        'TB-Pardipta 05' => 'TB-Pardipta 05',
+                        'TB-Kencana Laut' => 'TB-Kencana Laut',
                     ])
                     ->label('Tugboat/SPOB')
                     ->required(),
                 Forms\Components\Select::make('ob_spob')
                     ->options([
-                        'ob' => 'OB',
-                        'spob' => 'SPOB',
+                        'OB-Ratu Saphire' => 'OB-Ratu Saphire',
+                        'OB-PGM 1' => 'OB-PGM 1',
+                        'OB-Kendedes' => 'OB-Kendedes',
+                        'OB-Gemilang Perkasa 99' => 'OB-Gemilang Perkasa 99',
+                        'SPOB-Ratu Zulaikha' => 'SPOB-Ratu Zulaikha',
+                        'SPOB-Ratu Yamani' => 'SPOB-Ratu Yamani',
+                        'OB-Ratu Malika' => 'OB-Ratu Malika',
+                        'OB-Royal 45' => 'OB-Royal 45',
+                        'OB-Ratu Syahrah' => 'OB-Ratu Syahrah',
+                        'OB-Sea Royal 36' => 'OB-Sea Royal 36',
+                        'OB-Gemilang Perkasa 9' => 'OB-Gemilang Perkasa 9',
+                        'OB-Queen Sofia' => 'OB-Queen Sofia',
+                        'OB-Ratu Maryam' => 'OB-Ratu Maryam',
+                        'OB-Sea Royal 9' => 'OB-Sea Royal 9',
+                        'OB-BB SAS 9' => 'OB-BB SAS 9',
+                        'SPOB-Kertabumi' => 'SPOB-Kertabumi',
                     ])
                     ->label('OB/SPOB')
                     ->required(),
-                Forms\Components\TextInput::make('rute')
-                    ->required()
-                    ->maxLength(200),
+                Forms\Components\Select::make('rute')
+                    ->options([
+                        'Kotabaru-Samarinda' => 'Kotabaru-Samarinda',
+                        'Balikpapan-Samarinda' => 'Balikpapan-Samarinda',
+                        'Balikpapan-Berau' => 'Balikpapan-Berau',
+                        'Kotabaru-Berau' => 'Kotabaru-Berau',
+                        'EP Sanga-Sanga' => 'EP Sanga-Sanga',
+                        'Sembakung-Bunyu' => 'Sembakung-Bunyu',
+                        'Kotabaru-Banjarmasin' => 'Kotabaru-Banjarmasin',
+                        'Balikpapan-Muara Kembang' => 'Balikpapan-Muara Kembang',
+                        'Balikpapan-Banjarmasin' => 'Balikpapan-Banjarmasin',
+                        'Anggana-Balikpapan' => 'Anggana-Balikpapan',
+                        'Banjarmasin-Kotabaru' => 'Banjarmasin-Kotabaru',
+                        'Banjarmasin-Balikpapan' => 'Banjarmasin-Balikpapan',
+                    ])
+                    ->required(),
                 Forms\Components\TextInput::make('estimasi_fuel')
                     ->label('Estimasi Fuel')
                     ->required()
@@ -205,22 +267,31 @@ class CycleTimeCOAResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('waktu')
-                    ->dateTime()
+                    ->date()
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tahun')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('bulan')
+                    ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('trip'),
+                Tables\Columns\TextColumn::make('trip')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('fleet')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tugboat_spob')
+                    ->sortable()
                     ->label('Tugboat/SPOB')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ob_spob')
+                    ->sortable()
                     ->label('OB/SPOB')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('rute')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('estimasi_fuel')
                     ->label('Estimasi Fuel'),
@@ -228,6 +299,7 @@ class CycleTimeCOAResource extends Resource
                     ->label('Actual Fuel'),
                 Tables\Columns\TextColumn::make('fuel_status')
                     ->searchable()
+                    ->sortable()
                     ->label('Fuel Status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -385,6 +457,16 @@ class CycleTimeCOAResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Cycle Time COA';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Cycle Time COA';
     }
 
     public static function getPages(): array
