@@ -18,7 +18,8 @@ class ListCycleTimeCOAS extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Tambah Data Cycle Time COA Baru'),
             Action::make('importCycleTimeCOA')
                 ->label('Import Cycle Time COA')
                 ->color('danger')

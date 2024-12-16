@@ -8,7 +8,9 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class CycleTimeCOAResource extends Resource
 {
@@ -21,7 +23,7 @@ class CycleTimeCOAResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Hidden::make('user_id')
-                    ->default(auth()->id())
+                    ->default(Auth::id())
                     ->required(),
                 Forms\Components\DatePicker::make('waktu')
                     ->label('Waktu Keberangkatan')
@@ -44,6 +46,7 @@ class CycleTimeCOAResource extends Resource
                         'November' => 'November',
                         'Desember' => 'Desember',
                     ])
+                    ->searchable()
                     ->required()
                     ->label('Bulan Keberangkatan'),
                 Forms\Components\TextInput::make('trip')
@@ -79,6 +82,7 @@ class CycleTimeCOAResource extends Resource
                         'TB-Kencana Laut' => 'TB-Kencana Laut',
                     ])
                     ->label('Tugboat/SPOB')
+                    ->searchable()
                     ->required(),
                 Forms\Components\Select::make('ob_spob')
                     ->options([
@@ -100,6 +104,7 @@ class CycleTimeCOAResource extends Resource
                         'SPOB-Kertabumi' => 'SPOB-Kertabumi',
                     ])
                     ->label('OB/SPOB')
+                    ->searchable()
                     ->required(),
                 Forms\Components\Select::make('rute')
                     ->options([
@@ -116,6 +121,7 @@ class CycleTimeCOAResource extends Resource
                         'Banjarmasin-Kotabaru' => 'Banjarmasin-Kotabaru',
                         'Banjarmasin-Balikpapan' => 'Banjarmasin-Balikpapan',
                     ])
+                    ->searchable()
                     ->required(),
                 Forms\Components\TextInput::make('estimasi_fuel')
                     ->label('Estimasi Fuel')
@@ -306,144 +312,190 @@ class CycleTimeCOAResource extends Resource
                         'Normal' => 'success',
                         'Over' => 'danger',
                     }),
-                Tables\Columns\TextColumn::make('mulai_dari_jetty_loading')
-                    ->dateTime()
-                    ->label('Mulai dari Jetty Loading'),
-                Tables\Columns\TextColumn::make('order_tugboat_masuk_jetty_loading')
-                    ->dateTime()
-                    ->label('Order Tugboat Masuk Jetty Loading'),
-                Tables\Columns\TextColumn::make('mulai_naik_jangkar_jetty_loading')
-                    ->dateTime()
-                    ->label('Mulai Naik Jangkar Jetty Loading'),
-                Tables\Columns\TextColumn::make('selesai_naik_jangkar_jetty_loading')
-                    ->dateTime()
-                    ->label('Selesai Naik Jangkar Jetty Loading'),
-                Tables\Columns\TextColumn::make('proses_connect_jetty_loading')
-                    ->label('Proses Connect Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('berlabuh_jetty_loading')
-                    ->label('Berlabuh Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('loading_master_onboard_jetty_loading')
-                    ->label('Loading Master Onboard Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('mulai_loading_jetty_loading')
-                    ->label('Mulai Loading Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('selesai_loading_jetty_loading')
-                    ->label('Selesai Loading Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('mulai_sounding_jetty_loading')
-                    ->label('Mulai Sounding Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('selesai_sounding_jetty_loading')
-                    ->label('Selesai Sounding Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('order_tugboat_keluar_jetty_loading')
-                    ->label('Order Tugboat Keluar Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('proses_keluar_jetty_loading')
-                    ->label('Proses Keluar Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('cast_off_jetty_loading')
-                    ->label('Cast Off Jetty Loading')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('full_away_sts')
-                    ->label('Full Away STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('tiba_di_sts')
-                    ->label('Tiba di STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('order_tugboat_masuk_sts')
-                    ->label('Order Tugboat Masuk STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('proses_masuk_sts')
-                    ->label('Proses Masuk STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('berlabuh_sts')
-                    ->label('Berlabuh STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('loading_master_onboard_sts')
-                    ->label('Loading Master Onboard STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('mulai_loading_sts')
-                    ->label('Mulai Loading STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('selesai_loading_sts')
-                    ->label('Selesai Loading STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('mulai_sounding_sts')
-                    ->label('Mulai Sounding STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('selesai_sounding_sts')
-                    ->label('Selesai Sounding STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('order_tugboat_keluar_sts')
-                    ->label('Order Tugboat Keluar STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('proses_keluar_sts')
-                    ->label('Proses Keluar STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('cast_off_sts')
-                    ->label('Cast Off STS')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('full_away_jetty_discharge')
-                    ->label('Full Away Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('tiba_di_jetty_discharge')
-                    ->label('Tiba di Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('order_tugboat_masuk_jetty_discharge')
-                    ->label('Order Tugboat Masuk Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('mulai_naik_jangkar_jetty_discharge')
-                    ->label('Mulai Naik Jangkar Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('selesai_naik_jangkar_jetty_discharge')
-                    ->label('Selesai Naik Jangkar Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('proses_masuk_jetty_discharge')
-                    ->label('Proses Masuk Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('berlabuh_jetty_discharge')
-                    ->label('Berlabuh Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('loading_master_onboard_jetty_discharge')
-                    ->label('Loading Master Onboard Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('mulai_discharge_jetty_discharge')
-                    ->label('Mulai Discharge Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('selesai_discharge_jetty_discharge')
-                    ->label('Selesai Discharge Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('document_cargo_onboard_jetty_discharge')
-                    ->label('Document Cargo Onboard Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('order_tugboat_keluar_jetty_discharge')
-                    ->label('Order Tugboat Keluar Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('proses_keluar_jetty_discharge')
-                    ->label('Proses Keluar Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('cast_off_jetty_discharge')
-                    ->label('Cast Off Jetty Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('tiba_di_pulau_atas')
-                    ->label('Tiba di Pulau Atas')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('full_away_setelah_discharge')
-                    ->label('Full Away Setelah Discharge')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('selesai_satu_cycle')
-                    ->label('Selesai Satu Cycle')
-                    ->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('viewDetails')
+                    ->label('Lihat Detail')
+                    ->modalHeading('Informasi Detail Cycle Time COA')
+                    ->action(fn ($record) => $record)
+                    ->form(fn ($record) => [
+                        Forms\Components\DateTimePicker::make('mulai_dari_jetty_loading')
+                            ->label('Mulai dari Jetty Loading')
+                            ->default($record->mulai_dari_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('order_tugboat_masuk_jetty_loading')
+                            ->label('Order Tugboat Masuk - Jetty Loading')
+                            ->default($record->order_tugboat_masuk_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('mulai_naik_jangkar_jetty_loading')
+                            ->label('Mulai Naik Jangkar - Jetty Loading')
+                            ->default($record->mulai_naik_jangkar_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('selesai_naik_jangkar_jetty_loading')
+                            ->label('Selesai Naik Jangkar - Jetty Loading')
+                            ->default($record->selesai_naik_jangkar_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('proses_connect_jetty_loading')
+                            ->label('Proses Connect Masuk - Jetty Loading')
+                            ->default($record->proses_connect_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('berlabuh_jetty_loading')
+                            ->label('Berlabuh - Jetty Loading')
+                            ->default($record->berlabuh_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('loading_master_onboard_jetty_loading')
+                            ->label('Loading Master Onboard - Jetty Loading')
+                            ->default($record->loading_master_onboard_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('mulai_loading_jetty_loading')
+                            ->label('Mulai Loading - Jetty Loading')
+                            ->default($record->mulai_loading_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('selesai_loading_jetty_loading')
+                            ->label('Selesai Loading - Jetty Loading')
+                            ->default($record->selesai_loading_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('mulai_sounding_jetty_loading')
+                            ->label('Mulai Sounding - Jetty Loading')
+                            ->default($record->mulai_sounding_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('selesai_sounding_jetty_loading')
+                            ->label('Selesai Sounding - Jetty Loading')
+                            ->default($record->selesai_sounding_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('order_tugboat_keluar_jetty_loading')
+                            ->label('Order Tugboat Keluar - Jetty Loading')
+                            ->default($record->order_tugboat_keluar_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('proses_keluar_jetty_loading')
+                            ->label('Proses Keluar - Jetty Loading')
+                            ->default($record->proses_keluar_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('cast_off_jetty_loading')
+                            ->label('Cast Off - Jetty Loading')
+                            ->default($record->cast_off_jetty_loading)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('full_away_sts')
+                            ->label('Full Away - STS')
+                            ->default($record->full_away_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('tiba_di_sts')
+                            ->label('Tiba di STS')
+                            ->default($record->tiba_di_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('order_tugboat_masuk_sts')
+                            ->label('Order Tugboat Masuk - STS')
+                            ->default($record->order_tugboat_masuk_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('proses_masuk_sts')
+                            ->label('Proses Masuk - STS')
+                            ->default($record->proses_masuk_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('berlabuh_sts')
+                            ->label('Berlabuh - STS')
+                            ->default($record->berlabuh_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('loading_master_onboard_sts')
+                            ->label('Loading Master Onboard - STS')
+                            ->default($record->loading_master_onboard_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('mulai_loading_sts')
+                            ->label('Mulai Loading - STS')
+                            ->default($record->mulai_loading_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('selesai_loading_sts')
+                            ->label('Selesai Loading - STS')
+                            ->default($record->selesai_loading_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('mulai_sounding_sts')
+                            ->label('Mulai Sounding - STS')
+                            ->default($record->mulai_sounding_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('selesai_sounding_sts')
+                            ->label('Selesai Sounding - STS')
+                            ->default($record->selesai_sounding_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('order_tugboat_keluar_sts')
+                            ->label('Order Tugboat Keluar - STS')
+                            ->default($record->order_tugboat_keluar_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('proses_keluar_sts')
+                            ->label('Proses Keluar - STS')
+                            ->default($record->proses_keluar_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('cast_off_sts')
+                            ->label('Cast Off - STS')
+                            ->default($record->cast_off_sts)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('full_away_jetty_discharge')
+                            ->label('Full Away - Jetty Discharge')
+                            ->default($record->full_away_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('tiba_di_jetty_discharge')
+                            ->label('Tiba di Jetty Discharge')
+                            ->default($record->tiba_di_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('order_tugboat_masuk_jetty_discharge')
+                            ->label('Order Tugboat Masuk - Jetty Discharge')
+                            ->default($record->order_tugboat_masuk_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('mulai_naik_jangkar_jetty_discharge')
+                            ->label('Mulai Naik Jangkar - Jetty Discharge')
+                            ->default($record->mulai_naik_jangkar_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('selesai_naik_jangkar_jetty_discharge')
+                            ->label('Selesai Naik Jangkar - Jetty Discharge')
+                            ->default($record->selesai_naik_jangkar_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('proses_masuk_jetty_discharge')
+                            ->label('Proses Masuk - Jetty Discharge')
+                            ->default($record->proses_masuk_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('loading_master_onboard_jetty_discharge')
+                            ->label('Loading Master Onboard - Jetty Discharge')
+                            ->default($record->loading_master_onboard_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('mulai_discharge_jetty_discharge')
+                            ->label('Mulai Discharge - Jetty Discharge')
+                            ->default($record->mulai_discharge_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('selesai_discharge_jetty_discharge')
+                            ->label('Selesai Discharge - Jetty Discharge')
+                            ->default($record->selesai_discharge_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('document_cargo_onboard_jetty_discharge')
+                            ->label('Document Cargo Onboard - Jetty Discharge')
+                            ->default($record->document_cargo_onboard_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('order_tugboat_keluar_jetty_discharge')
+                            ->label('Order Tugboat Keluar - Jetty Discharge')
+                            ->default($record->order_tugboat_keluar_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('proses_keluar_jetty_discharge')
+                            ->label('Proses Keluar - Jetty Discharge')
+                            ->default($record->proses_keluar_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('cast_off_jetty_discharge')
+                            ->label('Cast Off - Jetty Discharge')
+                            ->default($record->cast_off_jetty_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('tiba_di_pulau_atas')
+                            ->label('Tiba di Pulau Atas')
+                            ->default($record->tiba_di_pulau_atas)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('full_away_setelah_discharge')
+                            ->label('Full Away Setelah Discharge')
+                            ->default($record->full_away_setelah_discharge)
+                            ->disabled(),
+                        Forms\Components\DateTimePicker::make('selesai_satu_cycle')
+                            ->label('Kembali ke Posisi Awal (Satu Cycle)')
+                            ->default($record->selesai_satu_cycle)
+                            ->disabled(),
+                    ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
