@@ -20,43 +20,141 @@ class CargoTcCoaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('tc_coa')
+                Forms\Components\Select::make('tc_coa')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'TC' => 'TC',
+                        'COA' => 'COA',
+                        'Spot Charter' => 'Spot Charter',
+                    ]),
                 Forms\Components\TextInput::make('periode')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'Januari' => 'Januari',
+                        'Februari' => 'Februari',
+                        'Maret' => 'Maret',
+                        'April' => 'April',
+                        'Mei' => 'Mei',
+                        'Juni' => 'Juni',
+                        'Juli' => 'Juli',
+                        'Agustus' => 'Agustus',
+                        'September' => 'September',
+                        'Oktober' => 'Oktober',
+                        'November' => 'November',
+                        'Desember' => 'Desember',
+                    ]),
                 Forms\Components\TextInput::make('jetty_loading')
                     ->required()
-                    ->maxLength(255),
+                    ->searchable()
+                    ->options([
+                        'Jetty I RU V BPP' => 'Jetty I RU V BPP',
+                        'Jetty II RU V BPP' => 'Jetty II RU V BPP',
+                        'Jetty III RU V BPP' => 'Jetty III RU V BPP',
+                        'Jetty IV RU V BPP' => 'Jetty IV RU V BPP',
+                        'Jetty V RU V BPP' => 'Jetty V RU V BPP',
+                        'Jetty Kotabaru' => 'Jetty Kotabaru',
+                        'MT Sindang' => 'MT Sindang',
+                        'MT Sengeti' => 'MT Sengeti',
+                        'MT Gunung Kemala' => 'MT Gunung Kemala',
+                        'MT Serang Jaya' => 'MT Serang Jaya',
+                        'MT Sepinggan' => 'MT Sepinggan',
+                        'MT Sanga-Sanga' => 'MT Sanga-Sanga',
+                        'MT Victory' => 'MT Victory',
+                    ]),
                 Forms\Components\DatePicker::make('tanggal_loading')
+                    ->date()
                     ->required(),
                 Forms\Components\DatePicker::make('tanggal_unloading')
+                    ->date()
                     ->required(),
                 Forms\Components\TextInput::make('trip')
                     ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('jenis_kontrak')
                     ->required()
-                    ->maxLength(255),
+                    ->searchable()
+                    ->options([
+                        'Samarinda & Muara' => 'Samarinda & Muara',
+                        'Berau' => 'Berau',
+                        'Banjarmasin' => 'Banjarmasin',
+                    ]),
                 Forms\Components\TextInput::make('nomor_bl')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('jenis')
                     ->required()
-                    ->maxLength(255),
+                    ->searchable()
+                    ->options([
+                        'Ado' => 'Ado',
+                        'Biosolar' => 'Biosolar',
+                        'Pertalite' => 'Pertalite',
+                        'Pertamax' => 'Pertamax',
+                    ]),
                 Forms\Components\TextInput::make('tongkang')
                     ->required()
-                    ->maxLength(255),
+                    ->searchable()
+                    ->options([
+                        'Queen Sofia' => 'Queen Sofia',
+                        'Ratu Sapphire' => 'Ratu Sapphire',
+                        'Ratu Zulaikha' => 'Ratu Zulaikha',
+                        'PGM 1' => 'PGM 1',
+                        'GP 9' => 'GP 9',
+                        'Kendedes' => 'Kendedes',
+                        'Kertabumi' => 'Kertabumi',
+                        'Sea Royal 9' => 'Sea Royal 9',
+                        'Ratu Yamani' => 'Ratu Yamani',
+                        'Ratu Malika' => 'Ratu Malika',
+                        'Ratu Maryam' => 'Ratu Maryam',
+                        'Royal Rey' => 'Royal Rey',
+                        'Royal 45' => 'Royal 45',
+                        'Ratu Syahrah' => 'Ratu Syahrah',
+                        'Ratu Juwita' => 'Ratu Juwita',
+                        'OB Mapan 27027' => 'Ratu Mapan 27027',
+                    ]),
                 Forms\Components\TextInput::make('tugboat')
                     ->required()
-                    ->maxLength(255),
+                    ->searchable()
+                    ->options([
+                        'Pradipta 05' => 'Pradipta 05',
+                        'TB Wira Pratama' => 'TB Wira Pratama',
+                        'Merpati Nusantara' => 'Merpati Nusantara',
+                        'SPOB Ratu Zulaikha' => 'SPOB Ratu Zulaikha',
+                        'Cenderawasih Nusantara' => 'Cenderawasih Nusantara',
+                        'Pipit Nusantara' => 'Pipit Nusantara',
+                        'TB BB99' => 'TB BB99',
+                        'Lembu Buana' => 'Lembu Buana',
+                        'Pesut Pendingin' => 'Pesut Pendingin',
+                        'SPOB Kertabumi' => 'SPOB Kertabumi',
+                        'Armada Samudra 9' => 'Armada Samudra 9',
+                        'SPOB Ratu Yamani' => 'SPOB Ratu Yamani',
+                        'Losari' => 'Losari',
+                        'Kencana Laut' => 'Kencana Laut',
+                        'TB Rajawali Nusantara' => 'TB Rajawali Nusantara',
+                        'Ekuator 15' => 'Ekuator 15',
+                        'Pipit Nusantara' => 'Pipit Nusantara',
+                        'Royal Rey' => 'Royal Rey',
+                        'Yuddi 01' => 'Yuddi 01',
+                    ]),
                 Forms\Components\TextInput::make('rute_awal')
                     ->required()
-                    ->maxLength(255),
+                    ->searchable()
+                    ->options([
+                        'Balikpapan' => 'Balikpapan',
+                        'Samarinda' => 'Samarinda',
+                        'Kotabaru' => 'Kotabaru',
+                        'STS Balikpapan' => 'STS Balikpapan',
+                    ]),
                 Forms\Components\TextInput::make('rute_akhir')
                     ->required()
-                    ->maxLength(255),
+                    ->searchable()
+                    ->options([
+                        'STS Balikpapan' => 'STS Balikpapan',
+                        'Balikpapan' => 'Balikpapan',
+                        'Samarinda' => 'Samarinda',
+                        'Muara Kembang' => 'Muara Kembang',
+                        'Banjarmasin' => 'Banjarmasin',
+                        'Berau' => 'Berau',
+                    ]),
                 Forms\Components\TextInput::make('liters_at_15c')
                     ->required()
                     ->numeric(),

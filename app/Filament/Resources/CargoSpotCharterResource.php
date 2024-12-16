@@ -25,16 +25,50 @@ class CargoSpotCharterResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('tc_coa')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'TC' => 'TC',
+                        'COA' => 'COA',
+                        'Spot Charter' => 'Spot Charter',
+                    ]),
                 Forms\Components\TextInput::make('periode')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'Januari' => 'Januari',
+                        'Februari' => 'Februari',
+                        'Maret' => 'Maret',
+                        'April' => 'April',
+                        'Mei' => 'Mei',
+                        'Juni' => 'Juni',
+                        'Juli' => 'Juli',
+                        'Agustus' => 'Agustus',
+                        'September' => 'September',
+                        'Oktober' => 'Oktober',
+                        'November' => 'November',
+                        'Desember' => 'Desember',
+                    ]),
                 Forms\Components\TextInput::make('jetty_loading')
                     ->required()
-                    ->maxLength(255),
+                    ->searchable()
+                    ->options([
+                        'Kotabaru' => 'Kotabaru',
+                        'MT Gunung Kumala' => 'MT Gunung Kumala',
+                        'Tanjung Priok' => 'Tanjung Priok',
+                        'Pendingin' => 'Pendingin',
+                        'Jetty I RU V Balikpapan' => 'Jetty I RU V Balikpapan',
+                        'Jetty 5A RU V Balikpapan' => 'Jetty 5A RU V Balikpapan',
+                        'MT Serang Jaya' => 'MT Serang Jaya',
+                        'MT Cenderawasih' => 'MT Cenderawasih',
+                        'AKR Palaran' => 'AKR Palaran',
+                        'MT Sindang' => 'MT Sindang',
+                        'MT Griya Cirebon' => 'MT Griya Cirebon',
+                        'MT Gunung Kemala' => 'MT Gunung Kemala',
+                        'Jetty Interport' => 'Jetty Interport',
+                    ]),
                 Forms\Components\DatePicker::make('tanggal_loading')
+                    ->date()
                     ->required(),
                 Forms\Components\DatePicker::make('tanggal_unloading')
+                    ->date()
                     ->required(),
                 Forms\Components\TextInput::make('trip')
                     ->required()
@@ -47,13 +81,46 @@ class CargoSpotCharterResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('jenis')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'Biosolar' => 'Biosolar',
+                        'LSFO 180' => 'LSFO 180',
+                        'MFO 180' => 'MFO 180',
+                        'ADO' => 'ADO',
+                    ]),
                 Forms\Components\TextInput::make('tongkang')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'SPOB Golden Puma' => 'SPOB Golden Puma',
+                        'SPOB Kencana Kumala' => 'SPOB Kencana Kumala',
+                        'Sultan Sulaiman' => 'Sultan Sulaiman',
+                        'SPOB Cheetah' => 'SPOB Cheetah',
+                        'SPOB Alvina 03' => 'SPOB Alvina 03',
+                        'Royal 45' => 'Royal 45',
+                        'SPOB Kertabumi' => 'SPOB Kertabumi',
+                        'Borneo Perkasa' => 'Borneo Perkasa',
+                        'Ratu Juwita' => 'Ratu Juwita',
+                        'Queen Sofia' => 'Queen Sofia',
+                        'SPOB BBSS 27' => 'SPOB BBSS 27',
+                        'SKK 9' => 'SKK 9',
+                        'Ratu Zainab' => 'Ratu Zainab',
+                    ]),
                 Forms\Components\TextInput::make('tugboat')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'SPOB Golden Puma' => 'SPOB Golden Puma',
+                        'SPOB Kencana Kumala' => 'SPOB Kencana Kumala',
+                        'Sultan Sulaiman' => 'Sultan Sulaiman',
+                        'SPOB Cheetah' => 'SPOB Cheetah',
+                        'SPOB Alvina 03' => 'SPOB Alvina 03',
+                        'Pradipta 05' => 'Pradipta 05',
+                        'SPOB Kertabumi' => 'SPOB Kertabumi',
+                        'Borneo Perkasa' => 'Borneo Perkasa',
+                        'Pipit Nusantara' => 'Pipit Nusantara',
+                        'Lembu Buana' => 'Lembu Buana',
+                        'SPOB BBSS 27' => 'SPOB BBSS 27',
+                        'SKK 9' => 'SKK 9',
+                        'Ratu Zainab' => 'Ratu Zainab',
+                    ]),
                 Forms\Components\TextInput::make('rute_awal')
                     ->required()
                     ->maxLength(255),
