@@ -203,4 +203,14 @@ class EstimationCycleTimeCoaResource extends Resource
                 return sprintf('%02d:%02d', $hours, $minutes);
             });
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Cycle Time COA Estimation';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Cycle Time COA Estimation';
+    }
 }
